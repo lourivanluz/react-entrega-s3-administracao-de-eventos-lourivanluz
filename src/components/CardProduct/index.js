@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
 import { useContext } from "react";
 import { CasamentoContext } from "../../Providers/Casamento";
 import { ConfraternizacaoContext } from "../../Providers/Confraternizacao";
 import { FormaturaContext } from "../../Providers/Formatura";
 import { ModalContext } from "../../Providers/Modal";
 import ButtonMenu from "../Button";
+import { ButtonStyled } from "../Button/style";
 import { CardContainer, InfoCard } from "./style";
 
 export const CardProduct = ({ item, page }) => {
@@ -50,9 +50,9 @@ export const CardProduct = ({ item, page }) => {
         >{`Ver mais...`}</span>
       </InfoCard>
       {page !== "home" ? (
-        <Button variant="contained" onClick={handleClick}>
+        <ButtonStyled variant="contained" onClick={handleClick}>
           Remover
-        </Button>
+        </ButtonStyled>
       ) : (
         <ButtonMenu item={item}>Comprar</ButtonMenu>
       )}
