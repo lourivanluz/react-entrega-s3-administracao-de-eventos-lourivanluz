@@ -9,13 +9,13 @@ export const HeaderStyled = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
+  position: sticky;
+  z-index: 28;
+  top: 0;
 
   .logoContainer {
     display: flex;
     align-items: center;
-    &:hover {
-      background-color: red;
-    }
     h1 {
       margin-left: 15px;
       font-size: 25px;
@@ -34,16 +34,15 @@ export const HeaderStyled = styled.header`
       border-radius: 50%;
     }
   }
-  .Container-nav {
-    .container-menuIcon {
-      position: relative;
-      font-size: 32px;
-      z-index: 30;
-      color: white;
-      @media (min-width: 720px) {
-        display: none;
-      }
-    }
+`;
+
+export const ContainerIcon = styled.div`
+  position: relative;
+  font-size: 32px;
+  z-index: 30;
+  color: ${({ show }) => (show ? "black" : "white")};
+  @media (min-width: 720px) {
+    display: none;
   }
 `;
 
@@ -55,10 +54,14 @@ export const UlStyled = styled.ul`
   display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
+  background-color: #eeeff3;
 
   li {
-    margin: 20px 0;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
   }
 
   @media (min-width: 720px) {
@@ -69,8 +72,15 @@ export const UlStyled = styled.ul`
     transform: translate(0, 0);
     padding: 0;
     color: white;
+    background-color: transparent;
     li {
+      padding: 5px;
       margin: 0 15px;
+      &:hover {
+        text-shadow: 0 0 3px white;
+        border-bottom: 1px solid white;
+        cursor: pointer;
+      }
     }
   }
 `;

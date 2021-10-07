@@ -6,6 +6,8 @@ import { useState } from "react";
 import { CasamentoContext } from "../../Providers/Casamento";
 import { ConfraternizacaoContext } from "../../Providers/Confraternizacao";
 import { FormaturaContext } from "../../Providers/Formatura";
+import { IoIosArrowDown } from "react-icons/io";
+import { ButtonStyled } from "./style";
 
 export default function ButtonMenu({ item }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,7 +37,7 @@ export default function ButtonMenu({ item }) {
 
   return (
     <div>
-      <Button
+      <ButtonStyled
         id="basic-button"
         variant="contained"
         aria-controls="basic-menu"
@@ -44,7 +46,8 @@ export default function ButtonMenu({ item }) {
         onClick={handleClick}
       >
         Comprar
-      </Button>
+        <IoIosArrowDown className="dropArrow" />
+      </ButtonStyled>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -76,7 +79,7 @@ export default function ButtonMenu({ item }) {
             handleAddItem("confraternizacao");
           }}
         >
-          Confraternizacao
+          Confraternização
         </MenuItem>
       </Menu>
     </div>

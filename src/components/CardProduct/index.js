@@ -1,17 +1,18 @@
 import { Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CasamentoContext } from "../../Providers/Casamento";
 import { ConfraternizacaoContext } from "../../Providers/Confraternizacao";
 import { FormaturaContext } from "../../Providers/Formatura";
+import { ModalContext } from "../../Providers/Modal";
 import ButtonMenu from "../Button";
-import { CardContainer, InfoCard, ModalInfo } from "./style";
+import { CardContainer, InfoCard } from "./style";
 
 export const CardProduct = ({ item, page }) => {
   const { rmvFormaturaList } = useContext(FormaturaContext);
   const { rmvconfraternizacaoList } = useContext(ConfraternizacaoContext);
   const { rmvCasamentoList } = useContext(CasamentoContext);
 
-  const [showInfo, setShowInfo] = useState(false);
+  const { setShowInfo, setProduto } = useContext(ModalContext);
 
   const handleClick = () => {
     if (page === "formatura") {
@@ -41,7 +42,12 @@ export const CardProduct = ({ item, page }) => {
         ) : (
           <p>{item.description}</p>
         )}
-        <span onClick={() => setShowInfo(true)}>{`Ver mais...`}</span>
+        <span
+          onClick={() => {
+            setShowInfo(true);
+            setProduto(item);
+          }}
+        >{`Ver mais...`}</span>
       </InfoCard>
       {page !== "home" ? (
         <Button variant="contained" onClick={handleClick}>
@@ -49,19 +55,6 @@ export const CardProduct = ({ item, page }) => {
         </Button>
       ) : (
         <ButtonMenu item={item}>Comprar</ButtonMenu>
-      )}
-      {showInfo && (
-        <ModalInfo onClick={() => setShowInfo(false)}>
-          <div className="infoModal">
-            <figure>
-              <img src={item.image_url} alt={`img ${item.name}`} />
-            </figure>
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-            <p>{`Inicio de fabricação: ${item.first_brewed}`}</p>
-            <p>{`${item.volume.value} LTs`}</p>
-          </div>
-        </ModalInfo>
       )}
     </CardContainer>
   );

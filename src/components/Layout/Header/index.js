@@ -1,4 +1,4 @@
-import { HeaderStyled, UlStyled } from "./style";
+import { ContainerIcon, HeaderStyled, UlStyled } from "./style";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import logo from "../../../assets/img/Logo.png";
@@ -25,12 +25,12 @@ export const Header = () => {
         </h1>
       </div>
       <nav className="Container-nav">
-        <div className="container-menuIcon">
+        <ContainerIcon show={showList}>
           {!showList && <GiHamburgerMenu onClick={() => setShowList(true)} />}
           {showList && (
             <AiOutlineCloseCircle onClick={() => setShowList(false)} />
           )}
-        </div>
+        </ContainerIcon>
 
         <UlStyled className="listNav" show={showList}>
           <li onClick={() => handleSwitchPage("/")}>Produtos</li>

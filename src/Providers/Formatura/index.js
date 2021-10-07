@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const FormaturaContext = createContext();
+export const FormaturaContext = createContext([]);
 
 export const FormaturaProvider = ({ children }) => {
   const [formaturaList, setFormaturaList] = useState([]);
